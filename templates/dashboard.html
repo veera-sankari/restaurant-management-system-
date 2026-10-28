@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>DineFlow Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <h3>🍽 DineFlow</h3>
+
+        <a href="#">🏠 Dashboard</a>
+        <a href="/menu">🍔 Menu</a>
+        <a href="/customers">👥 Customers</a>
+        <a href="/tables">🪑 Tables</a>
+        <a href="/orders">📦 Orders</a>
+        <a href="/billing">💳 Billing</a>
+        <a href="/reports">📊 Reports</a>
+        <a href="/view_feedback">⭐ Feedback</a>
+        <a href="/">🚪 Logout</a>
+
+    </div>
+
+    <div class="content">
+
+        <div class="card shadow mb-4">
+
+    <img src="{{ url_for('static', filename='images/restaurant.jpg') }}"
+         class="card-img-top"
+         style="height:300px; object-fit:cover;">
+
+    <div class="card-body">
+
+        <h2>🍽 Welcome to DineFlow Restaurant</h2>
+
+        <p class="text-muted">
+            Restaurant Management System Dashboard
+        </p>
+
+    </div>
+
+</div>
+
+        <hr>
+<!-- First Row -->
+<div class="row">
+
+    <!-- Menu -->
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-lg p-3 text-center rounded-4">
+            <img src="{{ url_for('static', filename='images/menu.png') }}"
+                 width="70" height="70"
+                 class="mx-auto mb-3">
+
+            <h5>Total Menu</h5>
+            <h2>{{ total_menu }}</h2>
+        </div>
+    </div>
+
+    <!-- Customers -->
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-lg p-3 text-center rounded-4">
+            <img src="{{ url_for('static', filename='images/customers.png') }}"
+                 width="70" height="70"
+                 class="mx-auto mb-3">
+
+            <h5>Customers</h5>
+            <h2>{{ total_customers }}</h2>
+        </div>
+    </div>
+
+    <!-- Tables -->
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-lg p-3 text-center rounded-4">
+            <img src="{{ url_for('static', filename='images/tables.png') }}"
+                 width="70" height="70"
+                 class="mx-auto mb-3">
+
+            <h5>Tables</h5>
+            <h2>{{ total_tables }}</h2>
+        </div>
+    </div>
+
+</div>
+
+<!-- Second Row -->
+<div class="row">
+
+    <!-- Orders -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-lg p-3 text-center rounded-4">
+            <img src="{{ url_for('static', filename='images/orders.png') }}"
+                 width="70" height="70"
+                 class="mx-auto mb-3">
+
+            <h5>Orders</h5>
+            <h2>{{ total_orders }}</h2>
+        </div>
+    </div>
+
+    <!-- Revenue -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-lg p-3 text-center rounded-4">
+            <img src="{{ url_for('static', filename='images/revenue.png') }}"
+                 width="70" height="70"
+                 class="mx-auto mb-3">
+
+            <h5>Revenue</h5>
+            <h2>₹ {{ revenue }}</h2>
+        </div>
+    </div>
+
+</div>
+<!-- AI DEMAND PREDICTION -->
+<div class="dashboard-section">
+
+    <h2>🤖 AI Demand Prediction</h2>
+
+    <p class="text-muted">
+        AI-based prediction of expected food demand for the next day.
+    </p>
+
+    {% if predictions %}
+
+    <!-- Prediction Date -->
+
+    <div class="alert alert-info">
+
+        <strong>📅 Prediction Date:</strong>
+
+        {{ predictions[0].date }}
+
+    </div>
+
+
+    <!-- Prediction Table -->
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Food Item</th>
+
+                    <th>Category</th>
+
+                    <th>Predicted Demand</th>
+
+                    <th>Recommendation</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            {% for item in predictions %}
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            {{ item.item_name }}
+                        </strong>
+
+                    </td>
+
+
+                    <td>
+
+                        {{ item.category }}
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="fw-bold">
+
+                            {{ item.predicted_demand }}
+
+                            portions
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        {% if item.recommendation == "🟢 Prepare More" %}
+
+                            <span class="badge bg-success">
+
+                                🟢 Prepare More
+
+                            </span>
+
+
+                        {% elif item.recommendation == "🟡 Normal Stock" %}
+
+                            <span class="badge bg-warning text-dark">
+
+                                🟡 Normal Stock
+
+                            </span>
+
+
+                        {% else %}
+
+                            <span class="badge bg-danger">
+
+                                🔴 Prepare Less
+
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- AI Explanation -->
+
+    <div class="alert alert-light border mt-3">
+
+        <strong>💡 AI Insight:</strong>
+
+        The Random Forest model analyzes historical demand patterns,
+        day of the week, month, weekend behavior and food item information
+        to estimate the expected demand.
+
+    </div>
+
+
+    {% else %}
+
+        <div class="alert alert-warning">
+
+            ⚠️ No AI prediction data available.
+
+            Please run the demand prediction model.
+
+        </div>
+
+    {% endif %}
+
+</div>
+</body>
+
+</html>

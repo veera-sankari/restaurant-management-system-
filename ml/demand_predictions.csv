@@ -1,0 +1,7 @@
+date,menu_id,item_name,category,day_of_week,month,is_weekend,predicted_demand,recommendation
+2026-09-15,1,Chicken Biryani,Main Course,1,9,0,18,🟢 Prepare More
+2026-09-15,2,Veg Fried Rice,Main Course,1,9,0,15,🟡 Normal Stock
+2026-09-15,4,Plain Dosa,Breakfast,1,9,0,15,🟡 Normal Stock
+2026-09-15,6,muffins,desert,1,9,0,8,🔴 Prepare Less
+2026-09-15,7,French fries,Snacks,1,9,0,11,🟡 Normal Stock
+2026-09-15,9,Meals,Lunch,1,9,0,18,🟢 Prepare More

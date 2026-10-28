@@ -1,0 +1,16 @@
+date,day_of_week,day_name,hour,month,is_weekend,menu_id,item_name,category,quantity
+2026-07-18,5,Saturday,17,7,1,1,Chicken Biryani,Main Course,3
+2026-07-18,5,Saturday,18,7,1,2,Veg Fried Rice,Main Course,2
+2026-07-18,5,Saturday,19,7,1,7,French fries,Snacks,1
+2026-07-19,6,Sunday,20,7,1,1,Chicken Biryani,Main Course,1
+2026-07-19,6,Sunday,21,7,1,2,Veg Fried Rice,Main Course,1
+2026-07-19,6,Sunday,21,7,1,6,muffins,desert,1
+2026-07-20,0,Monday,11,7,0,1,Chicken Biryani,Main Course,1
+2026-07-25,5,Saturday,17,7,1,9,Meals,Lunch,1
+2026-07-25,5,Saturday,18,7,1,4,Plain Dosa,Breakfast,1
+2026-08-13,3,Thursday,7,8,0,6,muffins,desert,1
+2026-08-13,3,Thursday,11,8,0,2,Veg Fried Rice,Main Course,1
+2026-08-13,3,Thursday,11,8,0,2,Veg Fried Rice,Main Course,1
+2026-08-13,3,Thursday,11,8,0,7,French fries,Snacks,1
+2026-08-13,3,Thursday,11,8,0,2,Veg Fried Rice,Main Course,1
+2026-08-13,3,Thursday,15,8,0,4,Plain Dosa,Breakfast,1
